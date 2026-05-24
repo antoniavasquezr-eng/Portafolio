@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antonia Vásquez — Diseño Instruccional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --navy: #1B2A4A;
+      --terracotta: #C0503A;
+      --gold: #D4A853;
+      --sage: #6B8F71;
+      --light: #FAF7F2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(27,42,74,0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    nav a:hover { opacity: 1; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 3rem 4rem;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-text { position: relative; }
+
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--navy);
+      opacity: 0.75;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+    }
+
+    .badge-navy { background: var(--navy); color: var(--cream); }
+    .badge-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+    .badge-terracotta { background: var(--terracotta); color: white; }
+
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: white;
+      background: var(--navy);
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover { background: var(--terracotta); transform: translateY(-2px); }
+
+    /* HERO IMAGE */
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-img-frame {
+      position: relative;
+      width: 380px;
+      height: 480px;
+    }
+
+    .hero-img-frame::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px;
+      width: 100%; height: 100%;
+      background: var(--terracotta);
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .hero-img-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      filter: saturate(0.9);
+    }
+
+    .hero-float-tag {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -2rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      z-index: 2;
+    }
+
+    /* SOBRE MÍ */
+    .section {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+    }
+
+    .section h2 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    /* SOBRE MÍ GRID */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      opacity: 0.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-top: 3px solid var(--navy);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(27,42,74,0.12);
+      margin: 0 3rem;
+    }
+
+    /* PROYECTOS */
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 4rem;
+      background: white;
+      overflow: hidden;
+    }
+
+    .project-card.reverse { direction: rtl; }
+    .project-card.reverse > * { direction: ltr; }
+
+    .project-visual {
+      background: var(--navy);
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-visual.terracotta { background: var(--terracotta); }
+    .project-visual.sage { background: var(--sage); }
+    .project-visual.gold { background: var(--gold); }
+
+    .project-number {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      color: white;
+      opacity: 0.12;
+      line-height: 1;
+    }
+
+    .project-tag-visual {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: white;
+      opacity: 0.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title-visual {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+
+    .project-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+    }
+
+    .project-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .project-content p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      opacity: 0.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.7rem;
+      background: var(--cream);
+      color: var(--navy);
+      text-transform: uppercase;
+    }
+
+    .project-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .project-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.7;
+      transition: opacity 0.2s, gap 0.2s;
+    }
+
+    .project-link:hover { opacity: 1; gap: 0.8rem; }
+
+    .project-link::before {
+      content: '→';
+      font-size: 0.8rem;
+    }
+
+    /* OTROS PROYECTOS */
+    .mini-projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .mini-card {
+      background: white;
+      padding: 2rem;
+      border-top: 3px solid var(--navy);
+      transition: transform 0.2s;
+    }
+
+    .mini-card:hover { transform: translateY(-4px); }
+
+    .mini-card-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.8rem;
+    }
+
+    .mini-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .mini-card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      opacity: 0.7;
+    }
+
+    /* CONTACTO */
+    .contact-section {
+      background: var(--navy);
+      padding: 6rem 3rem;
+      text-align: center;
+    }
+
+    .contact-section .section-label { justify-content: center; color: var(--gold); }
+    .contact-section .section-label::before { background: var(--gold); }
+
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: white;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .contact-section h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .contact-section p {
+      color: white;
+      opacity: 0.6;
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .contact-email:hover {
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: white;
+      opacity: 0.4;
+      text-transform: uppercase;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-text > * {
+      animation: fadeUp 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
+    .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
+    .hero-text > *:nth-child(5) { animation-delay: 0.5s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.2rem; }
+      .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+      .hero-img-frame { width: 280px; height: 360px; }
+      .hero-image-wrap { order: -1; }
+      .section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-card.reverse { direction: ltr; }
+      .mini-projects { grid-template-columns: 1fr; }
+      .divider { margin: 0 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">AV — Portfolio</span>
+    <ul>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">Diseño Instruccional · Psicología Educacional</div>
+      <h1>Hola,<br>soy <em>Antonia.</em></h1>
+      <p class="hero-desc">
+        Psicóloga educacional que diseña experiencias de aprendizaje desde la teoría hacia la práctica. 
+        Me mueve hacer que el conocimiento llegue a quienes más lo necesitan.
+      </p>
+      <div class="hero-badges">
+        <span class="badge badge-navy">Diseño Instruccional</span>
+        <span class="badge badge-outline">Educación Rural</span>
+        <span class="badge badge-terracotta">Investigación</span>
+        <span class="badge badge-outline">Comunidades</span>
+      </div>
+      <a href="#proyectos" class="hero-cta">Ver proyectos</a>
+    </div>
+
+    <div class="hero-image-wrap">
+      <div class="hero-img-frame">
+        <!-- REEMPLAZA 'assets/foto.jpg' con el nombre de tu imagen -->
+        <img src="assets/foto.jpg" alt="Antonia Vásquez" />
+        <div class="hero-float-tag">Santiago, Chile</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SOBRE MÍ -->
+  <section class="section" id="sobre-mi">
+    <div class="section-label">Sobre mí</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Psicóloga con foco en<br><em>aprendizaje real.</em></h2>
+        <p>
+          Siempre supe que quería trabajar en educación, pero no solo desde el aula. 
+          Lo que me apasiona es el espacio entre la teoría y la práctica: 
+          ese lugar donde una buena decisión de diseño puede transformar 
+          cómo alguien aprende, se siente y actúa.
+        </p>
+        <p>
+          He trabajado con docentes rurales, cuidadoras, emprendedores y comunidades. 
+          En cada proyecto parto desde el diagnóstico — entender quién es el aprendiz, 
+          qué necesita, y qué condiciones tiene — para diseñar algo que realmente funcione.
+        </p>
+        <p>
+          <!-- AGREGA O MODIFICA ESTE PÁRRAFO según lo que quieras contar -->
+          Actualmente diseño el primer diplomado en educación rural multigrado de Chile 
+          y asisto en investigación educativa de alcance nacional.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">125h</div>
+          <div class="stat-label">Diplomado diseñado</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">300+</div>
+          <div class="stat-label">Participantes en proyectos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Proyectos activos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Retención en talleres</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROYECTOS -->
+  <section class="section" id="proyectos">
+    <div class="section-label">Proyectos</div>
+    <div class="projects-header">
+      <h2>Lo que<br><em>he construido.</em></h2>
+    </div>
+
+    <!-- PROYECTO 1: DIPLOMADO -->
+    <div class="project-card">
+      <div class="project-visual navy">
+        <span class="project-number">01</span>
+        <div class="project-tag-visual">Caso principal · 2026</div>
+        <div class="project-title-visual">Diplomado en Educación Rural Multigrado</div>
+      </div>
+      <div class="project-content">
+        <div>
+          <div class="project-meta">Fundación 99 · Diseño instruccional completo</div>
+          <h3>El primer diplomado de educación rural multigrado en Chile</h3>
+          <p>
+            Diseñé desde cero la arquitectura curricular de un diplomado de 125 horas 
+            dirigido a docentes rurales. El proceso incluyó benchmarking de programas 
+            internacionales, revisión bibliográfica sistemática, diseño de 4 unidades 
+            y 30 sesiones, y la creación de recursos digitales interactivos.
+          </p>
+          <p>
+            Cada decisión de diseño tiene una intención pedagógica explícita: 
+            desde los autores seleccionados hasta la secuencia de actividades dentro de cada sesión.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Diseño curricular</span>
+            <span class="project-tag">Benchmarking</span>
+            <span class="project-tag">Recursos interactivos</span>
+            <span class="project-tag">Educación rural</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="https://antoniavasquezr-eng.github.io/Datos-estadisticos-ed-rural-Chile/" target="_blank" class="project-link">Diagnóstico: datos educación rural en Chile</a>
+          <a href="https://antoniavasquezr-eng.github.io/mapa-interactivo/" target="_blank" class="project-link">Actividad interactiva: Mapa del territorio</a>
+          <a href="https://antoniavasquezr-eng.github.io/actividad-carta/" target="_blank" class="project-link">Actividad interactiva: Sobre curricular</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROYECTO 2: CUIDADORAS -->
+    <div class="project-card reverse">
+      <div class="project-visual terracotta">
+        <span class="project-number">02</span>
+        <div class="project-tag-visual">Caso · 2025</div>
+        <div class="project-title-visual">Ruta de Ingresos para Cuidadoras</div>
+      </div>
+      <div class="project-content">
+        <div>
+          <div class="project-meta">Fundación 99 · Diagnóstico y modelo adaptativo</div>
+          <h3>Diseño instruccional diferenciado para una población compleja</h3>
+          <p>
+            El proyecto partió de un diagnóstico que reconoció algo clave: las cuidadoras 
+            no llegan todas igual. Diseñé un cuestionario autoadministrado que medía 
+            simultáneamente nivel de conocimiento en emprendimiento y disponibilidad real 
+            de tiempo según carga de cuidado.
+          </p>
+          <p>
+            El resultado fue una ruta adaptativa de 99 días con un objetivo común para todas 
+            —una compra efectiva antes de los 100 días— pero caminos distintos según 
+            las variables identificadas. El fondo fue adjudicado.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Diagnóstico diferenciado</span>
+            <span class="project-tag">Modelo adaptativo</span>
+            <span class="project-tag">Emprendimiento</span>
+            <span class="project-tag">Género</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <!-- Agrega links si tienes material disponible -->
+          <span class="project-link" style="cursor:default; opacity:0.4;">Material disponible bajo solicitud</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTROS PROYECTOS -->
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:1.5rem;">
+      Otros <em style="font-style:italic; color:var(--terracotta);">proyectos</em>
+    </h3>
+    <div class="mini-projects">
+      <div class="mini-card">
+        <div class="mini-card-tag">Práctica profesional · 2024</div>
+        <h4>Programa de Bienestar Docente</h4>
+        <p>
+          Diseñé e implementé un programa de autocuidado basado en gamificación 
+          para 34 docentes del Liceo Eugenio María de Hostos. 
+          80% de satisfacción, 25% de mejora en clima organizacional.
+        </p>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-tag">Investigación · 2025–Actualidad</div>
+        <h4>Asistente FONDECYT 11250678</h4>
+        <p>
+          Coordinación de terreno y análisis de datos en estudio mixto con 300 participantes. 
+          Diseño de experiencias formativas con invitada internacional, 
+          presentaciones en congresos y producción académica.
+        </p>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-tag">Comunidad · 2023–Actualidad</div>
+        <h4>Talleres Comunitarios — Junta de Vecinos</h4>
+        <p>
+          Coordinación voluntaria de iniciativas educativas: talleres de alfabetización 
+          digital para adultos mayores, ferias de emprendimiento 
+          y actividades con familias del barrio.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact-section" id="contacto">
+    <div class="section-label">Contacto</div>
+    <h2>¿Construimos<br><em>algo juntos?</em></h2>
+    <p>
+      Estoy abierta a proyectos de diseño instruccional, consultoría educativa 
+      y colaboraciones que tengan impacto real. Escríbeme.
+    </p>
+    <a href="mailto:antonia.vasquez.r@gmail.com" class="contact-email">
+      antonia.vasquez.r@gmail.com
+    </a>
+  </section>
+
+  <footer>
+    <span>Antonia Vásquez — Diseño Instruccional</span>
+    <span>Santiago, Chile · 2026</span>
+  </footer>
+
+</body>
+</html>
